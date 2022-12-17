@@ -300,8 +300,10 @@ where
                 container.image.inner().name(),
                 &container.id()[..12]
             )
-        });
+        })
+        .replace("/", "_");
 
+    dbg!(&container_name);
     get_log_dump_file_path(log_dump_dir, &container_name, stdtype)
 }
 
