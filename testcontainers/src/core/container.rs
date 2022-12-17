@@ -264,10 +264,14 @@ where
     let mut stderr = container.stderr_logs().into_inner();
 
     let log_dump_dir = get_log_dump_dir_path();
+    dbg!(&log_dump_dir);
     fs::create_dir_all(log_dump_dir.clone())?;
 
     let stdout_dump_path = get_container_log_dump_path(&log_dump_dir, container, "stdout");
     let stderr_dump_path = get_container_log_dump_path(&log_dump_dir, container, "stderr");
+
+    dbg!(&stdout_dump_path);
+    dbg!(&stderr_dump_path);
 
     let mut file = File::create(stdout_dump_path)?;
     io::copy(&mut stdout, &mut file)?;
